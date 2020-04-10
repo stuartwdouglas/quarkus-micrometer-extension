@@ -19,14 +19,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>dev.ebullient</groupId>
+    <groupId>dev.ebullient.quarkus-micrometer-extension</groupId>
     <artifactId>quarkus-micrometer-build</artifactId>
-    <version>${revision}</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>../build/pom.xml</relativePath>
   </parent>
 
   <artifactId>quarkus-micrometer-deployment</artifactId>
-
   <name>Micrometer Quarkus extension - Deployment</name>
 
   <properties>
@@ -36,7 +35,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>dev.ebullient</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>quarkus-micrometer</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -48,7 +47,13 @@
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-registry-prometheus</artifactId>
+      <optional>true</optional>
     </dependency>
+    <!-- <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-stackdriver</artifactId>
+      <optional>true</optional>
+    </dependency> -->
 
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -67,6 +72,7 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-metrics-spi</artifactId>
+      <optional>true</optional>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-junit5-internal -->
@@ -90,7 +96,5 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
-
 </project>
