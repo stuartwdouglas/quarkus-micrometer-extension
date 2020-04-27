@@ -2,6 +2,7 @@ package dev.ebullient.micrometer.runtime.export;
 
 import java.util.Map;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
 import javax.inject.Singleton;
@@ -46,7 +47,7 @@ public class PrometheusMeterRegistryProvider {
     }
 
     @Produces
-    @Singleton
+    @ApplicationScoped
     @DefaultBean
     public CollectorRegistry collectorRegistry() {
         return new CollectorRegistry(true);

@@ -1,8 +1,8 @@
 package dev.ebullient.micrometer.deployment.export;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
@@ -29,17 +29,18 @@ public class SecondPrometheusTest {
                             "application.properties"));
 
     static class SecondPrometheusProvider {
+
         @Produces
-        @Singleton
+        @ApplicationScoped
+        PrometheusMeterRegistry test2 = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
+
+        @Produces
+        @ApplicationScoped
         public PrometheusMeterRegistry registry(CollectorRegistry collectorRegistry, Clock clock) {
             System.out.println("Make custom registry");
             return new PrometheusMeterRegistry(PrometheusConfig.DEFAULT, collectorRegistry, clock);
         }
     }
-
-    @Produces
-    @Singleton
-    PrometheusMeterRegistry test2 = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
 
     @Inject
     MeterRegistry registry;
